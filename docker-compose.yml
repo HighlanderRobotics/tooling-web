@@ -1,0 +1,17 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - '80:80'
+    volumes:
+      - tooling-db:/tooling-data
+    environment:
+      - DATABASE_URL=file:/tooling-data/data.db
+      - PORT=80
+    env_file:
+      - .env.production
+    command: node /app/build/index.js
+
+volumes:
+  tooling-db:
