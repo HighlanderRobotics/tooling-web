@@ -1,7 +1,9 @@
 <script lang="ts">
-    import { MagnoliaUIRoot } from 'magnolia-ui-svelte';
+	import { MagnoliaUIRoot } from 'magnolia-ui-svelte';
 </script>
 
 <MagnoliaUIRoot>
-    <slot />
+	<!-- <ProgressBar color="var(--victory-purple)" /> -->
+
+	<slot />
 </MagnoliaUIRoot>

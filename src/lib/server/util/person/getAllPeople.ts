@@ -1,8 +1,12 @@
-import prisma from "../prisma";
+import prisma from '../prisma';
 
 /**
  * Get all people
  */
 export async function getAllPeople() {
-    return await prisma.person.findMany();
+	return await prisma.person.findMany({
+		orderBy: {
+			name: 'asc'
+		}
+	});
 }

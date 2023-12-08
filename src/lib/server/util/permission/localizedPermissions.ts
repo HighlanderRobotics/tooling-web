@@ -1,12 +1,22 @@
 export type LocalizedPermissionTree = {
-    [key: string]: string | LocalizedPermissionTree;
-}
+	[key: string]: string | LocalizedPermissionTree;
+};
 
 export const localizedPermissions: LocalizedPermissionTree = {
-    '*': 'Do absolutely anything',
-    'roster': {
-        '*': 'Full access to roster',
-        'view': 'View roster',
-        'edit': 'Edit roster',
-    },
+	'*': 'Do absolutely anything',
+	people: {
+		'*': 'Full access to people',
+		view: 'View people',
+		edit: 'Edit people'
+	},
+	labcertification: {
+		'*': 'Full access to lab certification',
+		view: 'View lab certification',
+		edit: 'Edit lab certification',
+		self: {
+			'*': 'Full access to one\'s own lab certification',
+			view: 'View one\'s own lab certification',
+			edit: 'Edit one\'s own lab certification',
+		}
+	}
 };

@@ -42,24 +42,32 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-
-  cards Card[]
 }
 
 model Person {
-  id          String       @id @default(cuid())
-  name        String
-  email       String
-  role        String
-  permissions Permission[]
+  id               String            @id @default(cuid())
+  name             String
+  email            String
+  role             String
+  permissions      Permission[]
+  teamAffiliated   Boolean           @default(false)
+  labCertification LabCertification?
 
   @@unique([email])
+}
+
+model LabCertification {
+  personId              String  @id
+  person                Person  @relation(fields: [personId], references: [id], onDelete: Cascade)
+  safetyQuiz            Boolean @default(false)
+  emergencyPreparedness Boolean @default(false)
+  labLayout             Boolean @default(false)
 }
 
 model Permission {
   id       String  @id @default(cuid())
   path     String
-  Person   Person? @relation(fields: [personId], references: [id])
+  Person   Person? @relation(fields: [personId], references: [id], onDelete: Cascade)
   personId String?
 
   @@unique([personId, path])
@@ -71,11 +79,4 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
-}
-
-model Card {
-  id      String @id @default(uuid())
-  owner   User   @relation(fields: [userId], references: [id])
-  payload String
-  userId  String
 }

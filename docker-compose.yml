@@ -10,7 +10,7 @@ services:
       - DATABASE_URL=file:/tooling-data/data.db
       - PORT=80
     env_file:
-      - .env.production
+      - .env
     command: node /app/build/index.js
 
 volumes:
