@@ -4,45 +4,45 @@
 	import type { Person, Prisma } from '@prisma/client';
 	import { Button, DensityProvider, Icon } from 'magnolia-ui-svelte';
 
-    export let canEdit = false;
-    export let person: Prisma.PersonGetPayload<{
+	export let canEdit = false;
+	export let person: Prisma.PersonGetPayload<{
 		select: {
 			id: true;
 			name: true;
 			role: true;
 			email: true;
-            teamAffiliated: true;
+			teamAffiliated: true;
 			labCertification: boolean;
 		};
 	}>;
 </script>
 
 <div class="person">
-			{#if canEdit}
-				<div class="right-actions">
-					<!-- <DensityProvider density="compact"> -->
-						<Button variant="secondary" element="a" href="/tools/people/{person.id}/edit">Edit</Button>
-					<!-- </DensityProvider> -->
-				</div>
-			{/if}
-			<div class="flex-row">
-				<img src="/api/people/{person.id}/picture?size=120" alt="Profile" />
-				<div>
-					<h1>{person.name}</h1>
-					<h2>{localizedRole(person.role)}</h2>
-				</div>
-			</div>
-			<div class="datum">
-				<div class="label">Email</div>
-				<a href="mailto:{person.email}" class="value">{person.email}</a>
-			</div>
-			<div class="datum">
-				<div class="label">Affiliation</div>
-				<div class="value">
-					{person.teamAffiliated ? 'Affiliated with 8033' : 'Not affiliated with 8033'}
-				</div>
-			</div>
+	{#if canEdit}
+		<div class="right-actions">
+			<!-- <DensityProvider density="compact"> -->
+			<Button variant="secondary" element="a" href="/tools/people/{person.id}/edit">Edit</Button>
+			<!-- </DensityProvider> -->
 		</div>
+	{/if}
+	<div class="flex-row">
+		<img src="/api/people/{person.id}/picture?size=120" alt="Profile" />
+		<div>
+			<h1>{person.name}</h1>
+			<h2>{localizedRole(person.role)}</h2>
+		</div>
+	</div>
+	<div class="datum">
+		<div class="label">Email</div>
+		<a href="mailto:{person.email}" class="value">{person.email}</a>
+	</div>
+	<div class="datum">
+		<div class="label">Affiliation</div>
+		<div class="value">
+			{person.teamAffiliated ? 'Affiliated with 8033' : 'Not affiliated with 8033'}
+		</div>
+	</div>
+</div>
 
 <style>
 	.flex-row {
@@ -103,4 +103,3 @@
 		text-decoration: none;
 	}
 </style>
-

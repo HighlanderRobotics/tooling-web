@@ -63,9 +63,9 @@
 
 {#if canEdit}
 	<form
-		action={`/tools/lab-certification?/${certified ? 'unCertify' : 'certify'}=&person=${encodeURIComponent(
-			personId
-		)}&certification=${encodeURIComponent(certification)}`}
+		action={`/tools/lab-certification?/${
+			certified ? 'unCertify' : 'certify'
+		}=&person=${encodeURIComponent(personId)}&certification=${encodeURIComponent(certification)}`}
 		method="post"
 		use:enhance
 	>
@@ -73,7 +73,9 @@
 			class="cell"
 			type="submit"
 			aria-busy={pendingUpdate != null}
-			aria-label={`Currently ${displayCertified ? 'certified' : 'not certified'} for ${localizedCertification[certification]}. Toggle.`}
+			aria-label={`Currently ${displayCertified ? 'certified' : 'not certified'} for ${
+				localizedCertification[certification]
+			}. Toggle.`}
 			on:click={() => {
 				if (pendingUpdate != null) return;
 
@@ -92,11 +94,7 @@
 		</button>
 	</form>
 {:else}
-	<div
-		class="cell"
-		class:certified={displayCertified}
-		class:onSecondaryContainer
-	>
+	<div class="cell" class:certified={displayCertified} class:onSecondaryContainer>
 		{#if displayCertified}
 			<span class="absolute" transition:blurScale={{ scaleX: 1.5 }}>Certified</span>
 		{:else}
@@ -105,7 +103,6 @@
 		<span class="hidden" aria-hidden="true">Not certified</span>
 	</div>
 {/if}
-
 
 <style>
 	.cell {

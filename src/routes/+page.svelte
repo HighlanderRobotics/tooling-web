@@ -22,7 +22,6 @@
 	</div>
 </div>
 
-
 <style>
 	p {
 		margin-bottom: 10px;

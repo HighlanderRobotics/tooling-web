@@ -15,21 +15,21 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	const permissions = {
 		people: {
 			view: await hasPermission(requester, 'people.view'),
-			edit: await hasPermission(requester, 'people.edit'),
+			edit: await hasPermission(requester, 'people.edit')
 		},
 		labCertification: {
 			view: await hasPermission(requester, 'labcertification.view'),
-			edit: await hasPermission(requester, 'labcertification.edit'),
-		},
+			edit: await hasPermission(requester, 'labcertification.edit')
+		}
 	};
 
 	if (!permissions.people.view) {
 		throw error(403, 'You do not have permission to view people.');
 	}
 
-	const person = await prisma.person.findUnique({
+	const person = (await prisma.person.findUnique({
 		where: {
-			id: params.id,
+			id: params.id
 		},
 		select: {
 			id: true,
@@ -37,15 +37,15 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			role: true,
 			email: true,
 			teamAffiliated: true,
-			labCertification: permissions.labCertification.view,
+			labCertification: permissions.labCertification.view
 		}
-	}) as Prisma.PersonGetPayload<{
+	})) as Prisma.PersonGetPayload<{
 		select: {
 			id: true;
 			name: true;
 			role: true;
 			email: true;
-            teamAffiliated: true;
+			teamAffiliated: true;
 			labCertification: boolean;
 		};
 	}>;

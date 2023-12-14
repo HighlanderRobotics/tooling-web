@@ -14,9 +14,9 @@ export const localizedPermissions: LocalizedPermissionTree = {
 		view: 'View lab certification',
 		edit: 'Edit lab certification',
 		self: {
-			'*': 'Full access to one\'s own lab certification',
-			view: 'View one\'s own lab certification',
-			edit: 'Edit one\'s own lab certification',
+			'*': "Full access to one's own lab certification",
+			view: "View one's own lab certification",
+			edit: "Edit one's own lab certification"
 		}
 	}
 };
