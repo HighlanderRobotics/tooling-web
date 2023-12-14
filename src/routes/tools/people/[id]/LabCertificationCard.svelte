@@ -16,49 +16,47 @@
 		};
 	}>;
 
-	export let canEdit = false;
+	export let canEdit: boolean;
 </script>
 
 <div class="card">
-	<form method="post" use:enhance>
-		<h1>Lab Certification</h1>
-		<div class="criterion">
-			<div class="label">Safety Quiz</div>
-			<div class="value">
-				<CertifiedButton
-					certified={person.labCertification?.safetyQuiz}
-					personId={person.id}
-					certification="safetyQuiz"
-					onSecondaryContainer={true}
-					{canEdit}
-				/>
-			</div>
+	<h1>Lab Certification</h1>
+	<div class="criterion">
+		<div class="label">Safety Quiz</div>
+		<div class="value">
+			<CertifiedButton
+				certified={person.labCertification?.safetyQuiz}
+				personId={person.id}
+				certification="safetyQuiz"
+				onSecondaryContainer={true}
+				{canEdit}
+			/>
 		</div>
-		<div class="criterion">
-			<div class="label">Emergency Preparedness</div>
-			<div class="value">
-				<CertifiedButton
-					certified={person.labCertification?.emergencyPreparedness}
-					personId={person.id}
-					certification="emergencyPreparedness"
-					onSecondaryContainer={true}
-					{canEdit}
-				/>
-			</div>
+	</div>
+	<div class="criterion">
+		<div class="label">Emergency Preparedness</div>
+		<div class="value">
+			<CertifiedButton
+				certified={person.labCertification?.emergencyPreparedness}
+				personId={person.id}
+				certification="emergencyPreparedness"
+				onSecondaryContainer={true}
+				{canEdit}
+			/>
 		</div>
-		<div class="criterion">
-			<div class="label">Lab Layout</div>
-			<div class="value">
-				<CertifiedButton
-					certified={person.labCertification?.labLayout}
-					personId={person.id}
-					certification="labLayout"
-					onSecondaryContainer={true}
-					{canEdit}
-				/>
-			</div>
+	</div>
+	<div class="criterion">
+		<div class="label">Lab Layout</div>
+		<div class="value">
+			<CertifiedButton
+				certified={person.labCertification?.labLayout}
+				personId={person.id}
+				certification="labLayout"
+				onSecondaryContainer={true}
+				{canEdit}
+			/>
 		</div>
-	</form>
+	</div>
 </div>
 
 <style>

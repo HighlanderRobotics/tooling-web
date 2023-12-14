@@ -21,7 +21,7 @@
 
 	<div class="cards">
 		<ProfileCard canEdit={data.permissions.people.edit} {person} />
-		<LabCertificationCard canEdit={data.permissions.people.edit} {person} />
+		<LabCertificationCard canEdit={data.permissions.labCertification.edit} {person} />
 	</div>
 </div>
 

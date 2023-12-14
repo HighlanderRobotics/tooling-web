@@ -1,11 +1,12 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import { cubicOut } from 'svelte/easing';
 
 	export let certified = false;
 	export let personId: string;
 	export let certification: 'safetyQuiz' | 'emergencyPreparedness' | 'labLayout';
 
-	export let canEdit = true;
+	export let canEdit: boolean;
 	export let onSecondaryContainer = false;
 
 	let pendingUpdate: boolean | null = null;
@@ -60,39 +61,54 @@
 	};
 </script>
 
-<button
-	formaction={canEdit && pendingUpdate == null
-		? `?/${certified ? 'unCertify' : 'certify'}&person=${encodeURIComponent(
-				personId
-			)}&certification=${encodeURIComponent(certification)}`
-		: null}
-	role={canEdit ? 'button' : 'text'}
-	aria-busy={pendingUpdate != null}
-	aria-label={canEdit ? (
-		`Currently ${displayCertified ? 'certified' : 'not certified'} for ${localizedCertification[certification]}. Toggle.`
-	) : (
-		`Currently ${displayCertified ? 'certified' : 'not certified'} for ${localizedCertification[certification]}.`
-	)}
-	on:click={() => {
-		if (!canEdit || pendingUpdate != null) return;
+{#if canEdit}
+	<form
+		action={`/tools/lab-certification?/${certified ? 'unCertify' : 'certify'}=&person=${encodeURIComponent(
+			personId
+		)}&certification=${encodeURIComponent(certification)}`}
+		method="post"
+		use:enhance
+	>
+		<button
+			class="cell"
+			type="submit"
+			aria-busy={pendingUpdate != null}
+			aria-label={`Currently ${displayCertified ? 'certified' : 'not certified'} for ${localizedCertification[certification]}. Toggle.`}
+			on:click={() => {
+				if (pendingUpdate != null) return;
 
-		pendingUpdate = !certified;
-		setTimeout(() => (pendingUpdate = null), 1000);
-	}}
-	class:certified={displayCertified}
-	class:onSecondaryContainer
->
-	{#if displayCertified}
-		<span class="absolute" transition:blurScale={{ scaleX: 1.5 }}>Certified</span>
-	{:else}
-		<span class="absolute" transition:blurScale={{ scaleX: 0.5 }}>Not certified</span>
-	{/if}
-	<span class="hidden" aria-hidden="true">Not certified</span>
-</button>
+				pendingUpdate = !certified;
+				setTimeout(() => (pendingUpdate = null), 1000);
+			}}
+			class:certified={displayCertified}
+			class:onSecondaryContainer
+		>
+			{#if displayCertified}
+				<span class="absolute" transition:blurScale={{ scaleX: 1.5 }}>Certified</span>
+			{:else}
+				<span class="absolute" transition:blurScale={{ scaleX: 0.5 }}>Not certified</span>
+			{/if}
+			<span class="hidden" aria-hidden="true">Not certified</span>
+		</button>
+	</form>
+{:else}
+	<div
+		class="cell"
+		class:certified={displayCertified}
+		class:onSecondaryContainer
+	>
+		{#if displayCertified}
+			<span class="absolute" transition:blurScale={{ scaleX: 1.5 }}>Certified</span>
+		{:else}
+			<span class="absolute" transition:blurScale={{ scaleX: 0.5 }}>Not certified</span>
+		{/if}
+		<span class="hidden" aria-hidden="true">Not certified</span>
+	</div>
+{/if}
 
 
 <style>
-	button {
+	.cell {
 		background-color: var(--secondary-container);
 		border: none;
 		border-radius: 7px;
@@ -101,6 +117,11 @@
 		position: relative;
 
 		transition: background-color 0.3s;
+	}
+
+	button:hover {
+		background-color: var(--light-gray);
+		cursor: pointer;
 	}
 
 	.onSecondaryContainer {
@@ -122,6 +143,10 @@
 	.certified {
 		background-color: #086826;
 		--on-background: #fff;
+	}
+
+	button.certified:hover {
+		background-color: #07501e;
 	}
 
 	.hidden {

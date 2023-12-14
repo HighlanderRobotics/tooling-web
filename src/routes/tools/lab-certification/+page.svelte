@@ -22,11 +22,5 @@
 	<title>Lab Certification | Tooling</title>
 </svelte:head>
 <DensityProvider density="compact">
-	{#if $page.data.permissions.view}
-		<form method="post" use:enhance>
-			<CertificationTable canEdit={$page.data.permissions.view} />
-		</form>
-	{:else}
-		<CertificationTable canEdit={$page.data.permissions.view} />
-	{/if}
+	<CertificationTable canEdit={$page.data.permissions.edit} />
 </DensityProvider>

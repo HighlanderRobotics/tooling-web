@@ -2,16 +2,16 @@ import { hasPermission } from '$lib/server/util/permission/hasPermission';
 import { getPersonFromUser } from '$lib/server/util/person/getPersonFromUser';
 import { error, type RequestEvent } from '@sveltejs/kit';
 import prisma from '$lib/server/util/prisma';
+import type { RouteParams as LabCertRouteParams } from '../../../../routes/tools/lab-certification/$types';
+import type { RouteParams as PeopleRouteParams } from '../../../../routes/tools/people/[id]/$types';
 
 export const validCertifications = ['safetyQuiz', 'emergencyPreparedness', 'labLayout'];
 
 export async function certificationAction(
 	certifies: boolean,
-	event: RequestEvent<any, string>
+	event: RequestEvent<LabCertRouteParams | PeopleRouteParams, string>
 ) {
 	const { locals, url } = event;
-
-	console.log("certify");
 
 	const session = await locals.getSession();
 	if (!session || !session?.user) {

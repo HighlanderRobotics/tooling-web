@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let canEdit = false;
+	export let canEdit: boolean;
 
 	import CertifiedButton from './CertifiedButton.svelte';
 
