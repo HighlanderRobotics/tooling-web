@@ -1,9 +1,8 @@
 import { hasPermission } from '$lib/server/util/permission/hasPermission';
-import { getPersonById } from '$lib/server/util/person/getPersonById';
-import { error, redirect } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { getPersonFromUser } from '$lib/server/util/person/getPersonFromUser';
-import type { Person, Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 import prisma from '$lib/server/util/prisma';
 
 export const load: PageServerLoad = async ({ params, locals }) => {
