@@ -1,8 +1,6 @@
 <script lang="ts">
 	import LabCertificationCard from './LabCertificationCard.svelte';
 
-	import { enhance } from '$app/forms';
-	import CertifiedButton from '../../lab-certification/CertifiedButton.svelte';
 	import ProfileCard from './ProfileCard.svelte';
 	import { Icon } from 'magnolia-ui-svelte';
 

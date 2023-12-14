@@ -1,9 +1,6 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
 	import type { Prisma } from '@prisma/client';
 	import CertifiedButton from '../../lab-certification/CertifiedButton.svelte';
-	import ProfileCard from './ProfileCard.svelte';
-	import { Icon } from 'magnolia-ui-svelte';
 
 	export let person: Prisma.PersonGetPayload<{
 		select: {

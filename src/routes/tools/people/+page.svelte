@@ -1,12 +1,10 @@
 <script lang="ts">
 	import AddPersonDialog from './AddPersonDialog.svelte';
 
-	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
 	import { localizedRole } from '$lib/util/person/role/localized';
-	import { roles } from '$lib/util/person/role/roles';
 	import type { Person } from '@prisma/client';
-	import { Button, DensityProvider, Dialog, TextField, Select } from 'magnolia-ui-svelte';
+	import { Button, DensityProvider } from 'magnolia-ui-svelte';
 	import { flip } from 'svelte/animate';
 	import { fade } from 'svelte/transition';
 

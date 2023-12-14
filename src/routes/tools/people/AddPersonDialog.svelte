@@ -4,11 +4,7 @@
 	import { page } from '$app/stores';
 	import { localizedRole } from '$lib/util/person/role/localized';
 	import { roles } from '$lib/util/person/role/roles';
-	import type { Person } from '@prisma/client';
-	import { error } from '@sveltejs/kit';
-	import { Button, DensityProvider, Dialog, TextField, Select } from 'magnolia-ui-svelte';
-
-	$: people = $page.data.people as Person[];
+	import { Button, Dialog, TextField, Select } from 'magnolia-ui-svelte';
 
 	export let open = false;
 

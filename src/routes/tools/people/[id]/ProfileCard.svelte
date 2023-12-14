@@ -1,8 +1,7 @@
 <script lang="ts">
-	import LogoIcon from '$lib/assets/images/LogoIcon.svelte';
 	import { localizedRole } from '$lib/util/person/role/localized.js';
-	import type { Person, Prisma } from '@prisma/client';
-	import { Button, DensityProvider, Icon } from 'magnolia-ui-svelte';
+	import type { Prisma } from '@prisma/client';
+	import { Button } from 'magnolia-ui-svelte';
 
 	export let canEdit = false;
 	export let person: Prisma.PersonGetPayload<{
