@@ -74,7 +74,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 		context.fillStyle = '#fff';
 
 		// Load the custom font file
-		registerFont('/app/src/lib/assets/fonts/heebo.ttf', {
+		registerFont('src/lib/assets/fonts/heebo.ttf', {
 			family: 'Heebo'
 		});
 
