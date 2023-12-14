@@ -60,29 +60,6 @@
 </div>
 
 <style>
-	.top {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-
-	.page {
-		margin: 16px;
-	}
-
-	a {
-		text-decoration: none;
-	}
-
-	.back {
-		display: flex;
-		align-items: center;
-	}
-
-	.back span {
-		margin-left: -2px;
-	}
-
 	.card {
 		padding: 16px;
 		background-color: var(--secondary-container);

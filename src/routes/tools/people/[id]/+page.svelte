@@ -48,29 +48,4 @@
 	.back span {
 		margin-left: -2px;
 	}
-
-	.card {
-		padding: 16px;
-		background-color: var(--secondary-container);
-		border-radius: 14px;
-
-		max-width: 450px;
-		margin: 16px auto;
-	}
-
-	h1 {
-		font-size: 18px;
-	}
-
-	.criterion {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-top: 7px;
-	}
-
-	.label {
-		color: var(--body);
-		font-weight: 500;
-	}
 </style>
