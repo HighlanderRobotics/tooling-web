@@ -2,7 +2,7 @@ import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import prisma from '$lib/server/util/prisma';
 
-import { createCanvas, createImageData, registerFont } from 'canvas';
+import { createCanvas, GlobalFonts } from '@napi-rs/canvas';
 
 export const GET: RequestHandler = async ({ params, url }) => {
 	const { id } = params;
@@ -37,10 +37,8 @@ export const GET: RequestHandler = async ({ params, url }) => {
 		// Fetch the image but replace the size
 		const response = await fetch(user.image.replace(/=s\d+-c$/, `=s${size}-c`));
 		const buffer = await response.arrayBuffer();
-		const imageData = new Uint8ClampedArray(buffer);
-		const image = createImageData(imageData, size, size);
 
-		return new Response(image.data, {
+		return new Response(buffer, {
 			headers: {
 				'Content-Type': 'image/png'
 			}
@@ -74,9 +72,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 		context.fillStyle = '#fff';
 
 		// Load the custom font file
-		registerFont('src/lib/assets/fonts/heebo.ttf', {
-			family: 'Heebo'
-		});
+		GlobalFonts.registerFromPath('src/lib/assets/fonts/heebo.ttf', 'Heebo');
 
 		// Set the font for the canvas context
 		context.font = `${size / 2.3}px 'Heebo', sans-serif`;
@@ -91,7 +87,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 			size / 2 + size / 45
 		);
 
-		const buffer = canvas.toBuffer();
+		const buffer = canvas.toBuffer("image/png");
 
 		return new Response(buffer, {
 			headers: {
