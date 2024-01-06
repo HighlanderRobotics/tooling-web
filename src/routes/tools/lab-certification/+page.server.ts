@@ -15,7 +15,7 @@ export const load = (async (event) => {
 
 	const permissions = {
 		view: await hasPermission(person, 'labcertification.view'),
-		edit: await hasPermission(person, 'labcertification.edit')
+		edit: await hasPermission(person, 'labcertification.edit'),
 	};
 
 	if (!permissions.view) throw error(403, 'You do not have permission to view lab certification.');

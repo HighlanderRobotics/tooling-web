@@ -2,6 +2,11 @@ import type { LayoutServerLoad } from './$types';
 import { redirect } from '@sveltejs/kit';
 import { getPersonFromUser } from '$lib/server/util/person/getPersonFromUser';
 
+const allowedSignedOutPaths = [
+	'/',
+	/^\/tools\/lab-certification\/quizzes.*$/,
+];
+
 export const load: LayoutServerLoad = async (event) => {
 	const session = await event.locals.getSession();
 
@@ -16,7 +21,7 @@ export const load: LayoutServerLoad = async (event) => {
 		}
 	} else {
 		// If not logged in, redirect to / (unless already there)
-		if (event.url.pathname !== '/') {
+		if (!allowedSignedOutPaths.some((path) => path instanceof RegExp ? path.test(event.url.pathname) : path === event.url.pathname)) {
 			throw redirect(302, '/');
 		}
 	}

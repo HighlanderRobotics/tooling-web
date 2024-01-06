@@ -10,7 +10,7 @@
 
 <div class="wrapper">
 	<div class="logo">
-		<LogoIcon height="500px" width="500px" />
+		<LogoIcon height="500px" width="500px" fill="var(--light-gray)" />
 	</div>
 	<div class="content">
 		<h1>Sign in to Tooling</h1>
@@ -44,7 +44,7 @@
 		margin: 15px;
 		text-align: center;
 
-		/* position: relative; */
+		position: relative;
 	}
 
 	.footer {

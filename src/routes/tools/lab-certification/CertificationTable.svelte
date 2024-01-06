@@ -6,6 +6,7 @@
 	import { page } from '$app/stores';
 	import { localizedRole } from '$lib/util/person/role/localized';
 	import type { Prisma } from '@prisma/client';
+	import { Button } from 'magnolia-ui-svelte';
 
 	$: people = $page.data.people as Prisma.PersonGetPayload<{
 		select: {
@@ -22,9 +23,14 @@
 <table>
 	<thead>
 		<tr>
-			<th colspan="5">
+			<th colspan="6">
 				<div class="action-bar">
 					<h2>Lab Certification</h2>
+					{#if $page.data.permissions.edit}
+						<Button variant="secondary" element="a" href="/tools/lab-certification/quiz-results">
+							Quiz Results
+						</Button>
+					{/if}
 				</div>
 			</th>
 		</tr>

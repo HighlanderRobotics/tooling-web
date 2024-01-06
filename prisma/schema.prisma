@@ -1,11 +1,11 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "rhel-openssl-1.0.x"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_DATABASE_URL")
 }
 
@@ -54,6 +54,7 @@ model Person {
   permissions      Permission[]
   teamAffiliated   Boolean           @default(false)
   labCertification LabCertification?
+  quizSubmissions  QuizSubmission[]
 
   @@unique([email])
 }
@@ -64,6 +65,23 @@ model LabCertification {
   safetyQuiz            Boolean @default(false)
   emergencyPreparedness Boolean @default(false)
   labLayout             Boolean @default(false)
+}
+
+model QuizSubmission {
+  id             String   @id @default(cuid())
+  submitter      Person?  @relation(fields: [submitterId], references: [id], onDelete: Cascade)
+  submitterId    String?
+  submitterEmail String? // This isn't redundant. Sometimes submitters are not in the database yet.
+  timestamp      DateTime @default(now())
+  quizType       QuizType
+  answers        String
+  score          Int
+  maxScore       Int
+}
+
+enum QuizType {
+  SAFETY_QUIZ
+  LAB_LAYOUT_EMERGENCY_PREPAREDNESS
 }
 
 model Permission {

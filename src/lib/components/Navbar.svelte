@@ -13,18 +13,20 @@
 		<h1 class="main-title">Tooling</h1>
 	</a>
 
-	<MenuWrapper>
-		<button class="profile" on:click={() => (menuOpen = true)}>
-			<img
-				src={$page.data.session?.user?.image}
-				alt="Profile image for {$page.data.session?.user?.name}"
-			/>
-		</button>
-		<Menu bind:open={menuOpen} anchor="right">
-			<MenuItem>Hi, {$page.data.session?.user?.name}</MenuItem>
-			<MenuButton on:click={() => signOut()}>Sign out</MenuButton>
-		</Menu>
-	</MenuWrapper>
+	{#if $page.data.session?.user}
+		<MenuWrapper>
+			<button class="profile" on:click={() => (menuOpen = true)}>
+				<img
+					src={$page.data.session?.user?.image}
+					alt="Profile image for {$page.data.session?.user?.name}"
+				/>
+			</button>
+			<Menu bind:open={menuOpen} anchor="right">
+				<MenuItem>Hi, {$page.data.session?.user?.name}</MenuItem>
+				<MenuButton on:click={() => signOut()}>Sign out</MenuButton>
+			</Menu>
+		</MenuWrapper>
+	{/if}
 </nav>
 
 <style>
