@@ -5,6 +5,7 @@ import { hasPermission } from "$lib/server/util/permission/hasPermission";
 import prisma from "$lib/server/util/prisma";
 import { QuizType } from "@prisma/client";
 import { _questions as safetyQuizQuestions } from "../../quizzes/safety-quiz/+page.server";
+import { _questions as labLayoutEmergencyPreparednessQuestions } from "../../quizzes/lab-layout-emergency-preparedness/+page.server";
 
 export const load: PageServerLoad = async (event) => {
     const session = await event.locals.getSession();
@@ -50,6 +51,10 @@ export const load: PageServerLoad = async (event) => {
             quizType: QuizType.SAFETY_QUIZ,
             questions: safetyQuizQuestions,
         },
+        {
+            quizType: QuizType.LAB_LAYOUT_EMERGENCY_PREPAREDNESS,
+            questions: labLayoutEmergencyPreparednessQuestions,
+        }
     ].find(q => q.quizType === submission.quizType)?.questions;
 
     if (!questionList) throw error(500);
