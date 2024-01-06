@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button, DensityProvider } from "magnolia-ui-svelte";
     import type { PageData } from "./$types";
-	import { QuizType } from "@prisma/client";
+	import type { QuizType } from "@prisma/client";
 	import formatTimestamp from "$lib/util/formatTimestamp";
 
     export let data: PageData;
@@ -41,11 +41,11 @@
 					</td>
                     <td>{[
                         {
-                            id: QuizType.SAFETY_QUIZ,
+                            id: "SAFETY_QUIZ",
                             name: "Safety Quiz",
                         },
                         {
-                            id: QuizType.LAB_LAYOUT_EMERGENCY_PREPAREDNESS,
+                            id: "LAB_LAYOUT_EMERGENCY_PREPAREDNESS",
                             name: "Lab Layout/Emergency Preparedness",
                         },
                     ].find(i => i.id === submission.quizType)?.name}</td>
