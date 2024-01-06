@@ -7,6 +7,10 @@
     export let data: PageData;
 </script>
 
+<svelte:head>
+    <title>Quiz Results</title>
+</svelte:head>
+
 <DensityProvider density="compact">
 	<table>
 		<thead>

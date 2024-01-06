@@ -11,6 +11,11 @@
 
     $: questions = JSON.parse(data.submission.answers) as Record<string, string | string[]>
 </script>
+
+<svelte:head>
+    <title>Quiz Results</title>
+</svelte:head>
+
 <div class="page">
 	<div class="top">
 		<a class="back" href="/tools/lab-certification/quiz-results">
