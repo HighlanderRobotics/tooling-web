@@ -1,4 +1,5 @@
-import { prismaRoles, type RoleString } from '$lib/util/person/role/roles';
+import type { RoleString } from "$lib/util/person/role/roles";
+import { prismaRoles } from "$lib/util/person/role/prismaRoles";
 import { QuizType } from '@prisma/client';
 import { defaultPermissions } from '../permission/defaultPermissions';
 import prisma from '../prisma';
