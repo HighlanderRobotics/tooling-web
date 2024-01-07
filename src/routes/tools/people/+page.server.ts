@@ -5,7 +5,7 @@ import type { PageServerLoad } from './$types';
 import { getAllPeople } from '$lib/server/util/person/getAllPeople';
 import { Prisma, type Person } from '@prisma/client';
 import { addPerson } from '$lib/server/util/person/addPerson';
-import { roles, type Role } from '$lib/util/person/role/roles';
+import { roles, type RoleString } from '$lib/util/person/role/roles';
 
 export const load = (async (event) => {
 	const session = await event.locals.getSession();
@@ -67,7 +67,7 @@ export const actions = {
 		if (!roles.includes(role.toString())) throw error(400, 'Invalid "role" field');
 
 		try {
-			await addPerson(name.toString(), email.toString(), role as Role, teamAffiliated);
+			await addPerson(name.toString(), email.toString(), role as RoleString, teamAffiliated);
 		} catch (e) {
 			if (e instanceof Prisma.PrismaClientKnownRequestError && e.code == 'P2002') {
 				return fail(400, { field: 'email', message: 'Email already used.', error: true });

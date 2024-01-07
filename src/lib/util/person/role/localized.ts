@@ -1,6 +1,6 @@
-import type { Role } from "./roles";
+import type { RoleString } from "./roles";
 
-export const localizedRole = (role: Role) =>
+export const localizedRole = (role: RoleString) =>
 	({
 		student: 'Student',
 		mentor: 'Mentor',

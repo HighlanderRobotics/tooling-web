@@ -50,13 +50,19 @@ model Person {
   id               String            @id @default(cuid())
   name             String
   email            String
-  role             String
+  role             Role
   permissions      Permission[]
   teamAffiliated   Boolean           @default(false)
   labCertification LabCertification?
   quizSubmissions  QuizSubmission[]
 
   @@unique([email])
+}
+
+enum Role {
+  STUDENT
+  MENTOR
+  OTHER
 }
 
 model LabCertification {
