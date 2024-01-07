@@ -1,3 +1,15 @@
-export const roles = ['student', 'mentor', 'other'] as const;
+import { Role } from "@prisma/client";
 
-export type Role = typeof roles[number];
+export const roles = [
+    "STUDENT",
+    "MENTOR",
+    "OTHER",
+]
+
+export const prismaRoles: Record<string, Role> = {
+    "STUDENT": Role.STUDENT,
+    "MENTOR": Role.MENTOR,
+    "OTHER": Role.OTHER,
+}
+
+export type RoleString = typeof roles[number];

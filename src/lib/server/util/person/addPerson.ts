@@ -1,10 +1,10 @@
-import type { Role } from '$lib/util/person/role/roles';
+import { prismaRoles, type RoleString } from '$lib/util/person/role/roles';
 import { QuizType } from '@prisma/client';
 import { defaultPermissions } from '../permission/defaultPermissions';
 import prisma from '../prisma';
 
-export async function addPerson(name: string, email: string, role: Role, teamAffiliated: boolean) {
-	const person = await prisma.person.create({ data: { name, email, role, teamAffiliated } });
+export async function addPerson(name: string, email: string, role: RoleString, teamAffiliated: boolean) {
+	const person = await prisma.person.create({ data: { name, email, role: prismaRoles[role], teamAffiliated } });
 
 	// Add default permissions
 	await prisma.permission.createMany({
