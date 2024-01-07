@@ -30,6 +30,9 @@ export const load = (async (event) => {
 				email: false,
 				permissions: false,
 				labCertification: true
+			},
+			orderBy: {
+				name: 'asc',
 			}
 		})) as Prisma.PersonGetPayload<{
 			select: {
