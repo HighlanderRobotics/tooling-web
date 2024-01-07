@@ -1,3 +1,3 @@
-export const roles = ['student', 'mentor'];
+export const roles = ['student', 'mentor', 'other'] as const;
 
-export type Role = 'student' | 'mentor';
+export type Role = typeof roles[number];

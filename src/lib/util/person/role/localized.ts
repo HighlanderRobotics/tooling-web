@@ -1,5 +1,8 @@
-export const localizedRole = (role: string) =>
+import type { Role } from "./roles";
+
+export const localizedRole = (role: Role) =>
 	({
 		student: 'Student',
-		mentor: 'Mentor'
+		mentor: 'Mentor',
+		other: 'Other',
 	}[role] ?? role);
