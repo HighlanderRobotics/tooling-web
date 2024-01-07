@@ -32,6 +32,11 @@ export async function addPerson(name: string, email: string, role: Role, teamAff
 			minScore: 80,
 			applyCertification: 'safetyQuiz',
 		},
+		{
+			quizType: QuizType.LAB_LAYOUT_EMERGENCY_PREPAREDNESS,
+			minScore: 90,
+			applyCertification: 'labLayoutEmergencyPreparedness',
+		},
 	];
 
 	for (const minScore of minScores) {

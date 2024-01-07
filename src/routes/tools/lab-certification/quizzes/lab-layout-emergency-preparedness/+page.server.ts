@@ -240,8 +240,54 @@ export const actions = {
         const percent = Math.round(score / total * 100);
 
         if (percent >= 90) {
+            if (person) {
+                await prisma.person.update({
+                    where: {
+                        id: person.id,
+                    },
+                    include: {
+                        labCertification: true,
+                    },
+                    data: {
+                        labCertification: {
+                            upsert: {
+                                create: {
+                                    labLayoutEmergencyPreparedness: true,
+                                },
+                                update: {
+                                    labLayoutEmergencyPreparedness: true,
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
             throw redirect(303, `/tools/lab-certification/quizzes/lab-layout-emergency-preparedness/pass?score=${encodeURIComponent(score)}&total=${encodeURIComponent(total)}&incorrect=${encodeURIComponent(JSON.stringify(incorrectQuestions))}`);
         } else {
+            if (person) {
+                await prisma.person.update({
+                    where: {
+                        id: person.id,
+                    },
+                    include: {
+                        labCertification: true,
+                    },
+                    data: {
+                        labCertification: {
+                            upsert: {
+                                create: {
+                                    labLayoutEmergencyPreparedness: false,
+                                },
+                                update: {
+                                    labLayoutEmergencyPreparedness: false,
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
             throw redirect(303, `/tools/lab-certification/quizzes/lab-layout-emergency-preparedness/fail?score=${encodeURIComponent(score)}&total=${encodeURIComponent(total)}&incorrect=${encodeURIComponent(JSON.stringify(incorrectQuestions))}`);
         }
     },
