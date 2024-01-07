@@ -5,7 +5,7 @@ import prisma from '$lib/server/util/prisma';
 import type { RouteParams as LabCertRouteParams } from '../../../../routes/tools/lab-certification/$types';
 import type { RouteParams as PeopleRouteParams } from '../../../../routes/tools/people/[id]/$types';
 
-export const validCertifications = ['safetyQuiz', 'emergencyPreparedness', 'labLayout'];
+export const validCertifications = ['safetyQuiz', 'labLayoutEmergencyPreparedness'];
 
 export async function certificationAction(
 	certifies: boolean,

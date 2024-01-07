@@ -4,7 +4,7 @@
 
 	export let certified = false;
 	export let personId: string;
-	export let certification: 'safetyQuiz' | 'emergencyPreparedness' | 'labLayout';
+	export let certification: keyof typeof localizedCertification;
 
 	export let canEdit: boolean;
 	export let onSecondaryContainer = false;
@@ -56,8 +56,7 @@
 
 	const localizedCertification = {
 		safetyQuiz: 'Safety Quiz',
-		emergencyPreparedness: 'Emergency Preparedness',
-		labLayout: 'Lab Layout'
+		labLayoutEmergencyPreparedness: 'Lab Layout/Emergency Preparedness',
 	};
 </script>
 

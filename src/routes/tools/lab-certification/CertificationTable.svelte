@@ -39,8 +39,7 @@
 			<th>Role</th>
 			<th class="expanded" />
 			<th>Safety Quiz</th>
-			<th>Emergency Preparedness</th>
-			<th>Lab Layout</th>
+			<th>Lab Layout/Emergency Preparedness</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -64,17 +63,9 @@
 				</td>
 				<td class="certified-cell">
 					<CertifiedButton
-						certified={person.labCertification?.emergencyPreparedness}
+						certified={person.labCertification?.labLayoutEmergencyPreparedness}
 						personId={person.id}
-						certification="emergencyPreparedness"
-						{canEdit}
-					/>
-				</td>
-				<td class="certified-cell">
-					<CertifiedButton
-						certified={person.labCertification?.labLayout}
-						personId={person.id}
-						certification="labLayout"
+						certification="labLayoutEmergencyPreparedness"
 						{canEdit}
 					/>
 				</td>

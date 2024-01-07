@@ -63,8 +63,7 @@ model LabCertification {
   personId              String  @id
   person                Person  @relation(fields: [personId], references: [id], onDelete: Cascade)
   safetyQuiz            Boolean @default(false)
-  emergencyPreparedness Boolean @default(false)
-  labLayout             Boolean @default(false)
+  labLayoutEmergencyPreparedness Boolean @default(false) @map("emergencyPreparedness")
 }
 
 model QuizSubmission {

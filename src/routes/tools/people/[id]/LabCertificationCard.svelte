@@ -34,21 +34,9 @@
 		<div class="label">Emergency Preparedness</div>
 		<div class="value">
 			<CertifiedButton
-				certified={person.labCertification?.emergencyPreparedness}
+				certified={person.labCertification?.labLayoutEmergencyPreparedness}
 				personId={person.id}
-				certification="emergencyPreparedness"
-				onSecondaryContainer={true}
-				{canEdit}
-			/>
-		</div>
-	</div>
-	<div class="criterion">
-		<div class="label">Lab Layout</div>
-		<div class="value">
-			<CertifiedButton
-				certified={person.labCertification?.labLayout}
-				personId={person.id}
-				certification="labLayout"
+				certification="labLayoutEmergencyPreparedness"
 				onSecondaryContainer={true}
 				{canEdit}
 			/>
