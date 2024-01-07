@@ -79,7 +79,7 @@
 				if (pendingUpdate != null) return;
 
 				pendingUpdate = !certified;
-				setTimeout(() => (pendingUpdate = null), 1000);
+				setTimeout(() => (pendingUpdate = null), 2000);
 			}}
 			class:certified={displayCertified}
 			class:onSecondaryContainer
