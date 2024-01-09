@@ -50,7 +50,7 @@ model Person {
   id               String            @id @default(cuid())
   name             String
   email            String
-  role             Role
+  role             Role              @default(STUDENT)
   permissions      Permission[]
   teamAffiliated   Boolean           @default(false)
   labCertification LabCertification?
@@ -62,13 +62,14 @@ model Person {
 enum Role {
   STUDENT
   MENTOR
+  SUPERVISOR
   OTHER
 }
 
 model LabCertification {
-  personId              String  @id
-  person                Person  @relation(fields: [personId], references: [id], onDelete: Cascade)
-  safetyQuiz            Boolean @default(false)
+  personId                       String  @id
+  person                         Person  @relation(fields: [personId], references: [id], onDelete: Cascade)
+  safetyQuiz                     Boolean @default(false)
   labLayoutEmergencyPreparedness Boolean @default(false) @map("emergencyPreparedness")
 }
 
