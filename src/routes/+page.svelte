@@ -15,7 +15,9 @@
 	<div class="content">
 		<h1>Sign in to Tooling</h1>
 		<p>You must be signed in to access this service.</p>
-		<Button on:click={() => signIn('google')}>Sign in</Button>
+		<div class="button-wrapper">
+			<Button on:click={() => signIn('google')}>Sign in</Button>
+		</div>
 	</div>
 	<div class="footer">
 		<p>Copyright © 2023 Highlander Robotics</p>
@@ -35,6 +37,13 @@
 		height: 100vh;
 	}
 
+	.button-wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		padding-top: 10px;
+	}
+
 	.content {
 		/* --secondary-container: #005500; */
 		background-color: var(--secondary-container);
@@ -42,7 +51,6 @@
 		border-radius: 7px;
 
 		margin: 15px;
-		text-align: center;
 
 		position: relative;
 	}
