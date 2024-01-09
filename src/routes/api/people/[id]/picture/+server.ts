@@ -40,7 +40,8 @@ export const GET: RequestHandler = async ({ params, url }) => {
 
 		return new Response(buffer, {
 			headers: {
-				'Content-Type': 'image/png'
+				'Content-Type': 'image/png',
+				'Cache-Control': 'max-age=31536000, immutable'
 			}
 		});
 	} else {
@@ -91,7 +92,8 @@ export const GET: RequestHandler = async ({ params, url }) => {
 
 		return new Response(buffer, {
 			headers: {
-				'Content-Type': 'image/png'
+				'Content-Type': 'image/png',
+				'Cache-Control': 'max-age=31536000, immutable'
 			}
 		});
 	}
