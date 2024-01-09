@@ -1,6 +1,7 @@
 export const roles = [
     "STUDENT",
     "MENTOR",
+    "SUPERVISOR",
     "OTHER",
 ]
 
