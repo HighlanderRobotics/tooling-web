@@ -8,6 +8,7 @@
 	import { createEventDispatcher } from 'svelte';
 
     export let showCancel = false;
+    export let showBulkImport = false;
 
     const dispatch = createEventDispatcher();
 
@@ -60,10 +61,15 @@
 			<label for="teamAffiliated">Affiliated with 8033</label>
 		</div>
 		<div class="actions">
-            {#if showCancel}
-                <Button type="button" variant="secondary" on:click={onCancel}>Cancel</Button>
+            {#if showBulkImport}
+                <Button type="button" variant="secondary" on:click={() => dispatch('bulkImport')}>Bulk Import</Button>
             {/if}
-			<Button>Add</Button>
+            <div class="right">
+                {#if showCancel}
+                    <Button type="button" variant="secondary" on:click={onCancel}>Cancel</Button>
+                {/if}
+                <Button>Add</Button>
+            </div>
 		</div>
 	</form>
 
@@ -123,12 +129,18 @@
 		left: 50%;
 		transform: translate(-50%, -50%) scaleX(0.8);
 	}
+    
+    .actions {
+        margin-top: 19px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
 
-	.actions {
+	.right {
 		display: flex;
 		justify-content: end;
 		gap: 7px;
-		margin-top: 19px;
 	}
 </style>
 
