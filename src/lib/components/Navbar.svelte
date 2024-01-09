@@ -1,5 +1,6 @@
 <script>
 	import { MenuWrapper, Menu, MenuItem, MenuButton } from 'magnolia-ui-svelte';
+	import { ProgressBar } from "@prgm/sveltekit-progress-bar";
 	import Logo from './Logo.svelte';
 	import { page } from '$app/stores';
 	import { signOut } from '@auth/sveltekit/client';
@@ -8,6 +9,7 @@
 </script>
 
 <nav>
+	<ProgressBar color="var(--victory-purple)" />
 	<a class="home-link" href="/">
 		<Logo />
 		<h1 class="main-title">Tooling</h1>
