@@ -13,7 +13,7 @@
 	<div class="top">
 		<a class="back" href="/tools/people">
 			<Icon icon="arrow_back_ios" size={22} />
-			<span>All people</span>
+			<span>People</span>
 		</a>
 	</div>
 
