@@ -91,7 +91,6 @@
 		position: sticky;
 		z-index: 1;
 		top: 65px;
-		border-top: 2px solid var(--light-gray);
 		background-color: var(--background);
 	}
 
