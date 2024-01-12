@@ -77,7 +77,6 @@
 		position: sticky;
 		z-index: 1;
 		top: 65px;
-		
 		background-color: var(--background);
 	}
 
