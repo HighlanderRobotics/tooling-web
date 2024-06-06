@@ -64,7 +64,7 @@ export const actions = {
 		if (!name) throw error(400, 'Missing "name" field.');
 		if (!email) throw error(400, 'Missing "email" field.');
 		if (!role) throw error(400, 'Missing "role" field.');
-		if (!roles.includes(role.toString())) throw error(400, 'Invalid "role" field');
+		if (!(role.toString() in roles)) throw error(400, 'Invalid "role" field');
 
 		try {
 			await addPerson(name.toString(), email.toString(), role as RoleString, teamAffiliated);

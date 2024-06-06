@@ -3,6 +3,6 @@ export const roles = [
     "MENTOR",
     "SUPERVISOR",
     "OTHER",
-]
+] as const;
 
 export type RoleString = typeof roles[number];
