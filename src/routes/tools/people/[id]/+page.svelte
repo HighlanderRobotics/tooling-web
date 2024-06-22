@@ -9,6 +9,10 @@
 	$: person = data.person;
 </script>
 
+<svelte:head>
+	<title>{person.name} | Tooling</title>
+</svelte:head>
+
 <div class="page">
 	<div class="top">
 		<a class="back" href="/tools/people">
