@@ -156,8 +156,6 @@ export const actions = {
 
 		const { url } = await put(`profile-image-${params.id}.jpg`, image, { access: 'public' });
 
-		console.log(url);
-
 		return { uploaded: url };
 	}
 };
