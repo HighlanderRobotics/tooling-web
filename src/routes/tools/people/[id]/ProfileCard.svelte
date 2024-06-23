@@ -222,7 +222,7 @@
 	input[type='checkbox']:checked::after {
 		content: 'check';
 		color: var(--secondary-container);
-		font-family: 'Material Symbols Rounded';
+		font-family: 'Material Symbols Rounded Reduced';
 		font-variation-settings: 'opsz' 22, 'GRAD' 100;
 		font-size: 22px;
 
@@ -230,6 +230,10 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%) scaleX(0.8);
+	}
+
+	:global(.fullIconsWillLoad) input[type='checkbox']:checked::after {
+		font-family: 'Material Symbols Rounded Full';
 	}
 
 	.error {
