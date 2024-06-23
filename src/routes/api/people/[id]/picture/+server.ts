@@ -41,7 +41,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 		return new Response(buffer, {
 			headers: {
 				'Content-Type': 'image/png',
-				'Cache-Control': 'max-age=31536000, immutable'
+				'Cache-Control': 's-maxage=300, public'
 			}
 		});
 	} else {
@@ -88,12 +88,12 @@ export const GET: RequestHandler = async ({ params, url }) => {
 			size / 2 + size / 45
 		);
 
-		const buffer = canvas.toBuffer("image/png");
+		const buffer = canvas.toBuffer('image/png');
 
 		return new Response(buffer, {
 			headers: {
 				'Content-Type': 'image/png',
-				'Cache-Control': 'max-age=31536000, immutable'
+				'Cache-Control': 's-maxage=300, public'
 			}
 		});
 	}
