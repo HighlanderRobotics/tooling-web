@@ -1,4 +1,6 @@
 <script lang="ts">
+	import ProfileCardImage from './ProfileCardImage.svelte';
+
 	import { enhance } from '$app/forms';
 	import { localizedRole } from '$lib/util/person/role/localized.js';
 	import { roles } from '$lib/util/person/role/roles';
@@ -51,7 +53,7 @@
 				<Button variant="secondary" type="submit" disabled={editSaving}>Save</Button>
 			</div>
 			<div class="flex-row">
-				<img src="/api/people/{person.id}/picture?size=120" alt="Profile" />
+				<ProfileCardImage {person} {canEdit} />
 			</div>
 			<div class="field">
 				<label for="name">Name</label>
@@ -98,7 +100,7 @@
 			</div>
 		{/if}
 		<div class="flex-row">
-			<img src="/api/people/{person.id}/picture?size=120" alt="Profile" />
+			<ProfileCardImage {person} {canEdit} />
 			<div>
 				<h1>{person.name}</h1>
 				<h2>{localizedRole(person.role)}</h2>
@@ -139,14 +141,6 @@
 
 	.right-actions {
 		float: right;
-	}
-
-	img {
-		width: 80px;
-		height: 80px;
-		border-radius: 7px;
-		margin-bottom: 14px;
-		background-color: var(--light-gray);
 	}
 
 	h1 {

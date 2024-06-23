@@ -7,6 +7,8 @@ import prisma from '$lib/server/util/prisma';
 import * as z from 'zod';
 import { roles } from '$lib/util/person/role/roles';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
+import { put } from '@vercel/blob';
+import sharp from 'sharp';
 
 export const load: PageServerLoad = async ({ params, locals }) => {
 	const session = await locals.getSession();
@@ -82,7 +84,10 @@ export const actions = {
 			name: z.string().min(1),
 			role: z.enum(roles),
 			email: z.string().email(),
-			teamAffiliated: z.enum(['on', 'off']).optional().transform((value) => value === 'on'),
+			teamAffiliated: z
+				.enum(['on', 'off'])
+				.optional()
+				.transform((value) => value === 'on')
 		});
 
 		try {
@@ -101,17 +106,58 @@ export const actions = {
 				const sentError = e.errors[0];
 
 				return fail(400, {
-					message: sentError.message,
+					message: sentError.message
 				});
 			}
 
 			if (e instanceof PrismaClientKnownRequestError) {
 				return fail(400, {
-					message: 'An error occured. Check if the email is already used.',
+					message: 'An error occured. Check if the email is already used.'
 				});
 			}
 
 			throw error(500);
 		}
+	},
+	uploadImage: async ({ request, locals, params }) => {
+		const session = await locals.getSession();
+
+		if (!session?.user) throw error(500);
+
+		const requester = await getPersonFromUser(session?.user);
+		if (!requester) throw error(500);
+
+		const canEdit = await hasPermission(requester, 'people.edit');
+
+		if (!canEdit) {
+			throw error(403, 'You do not have permission to edit people.');
+		}
+
+		const formData = await request.formData();
+		const image = formData.get('image') as File;
+
+		if (!image) {
+			throw error(400, { message: 'No file to upload.' });
+		}
+
+		if (image.type !== 'image/jpeg') {
+			return fail(400, { message: 'Must be a JPEG' });
+		}
+
+		if (image.size >= 1000000) {
+			return fail(400, { message: 'Must be smaller than 1 MB' });
+		}
+
+		const metadata = await sharp(await image.arrayBuffer()).metadata();
+
+		if (metadata.width !== 500 || metadata.height !== 500) {
+			return fail(400, { message: 'Must be exactly 500 by 500 pixels' });
+		}
+
+		const { url } = await put(`profile-image-${params.id}.jpg`, image, { access: 'public' });
+
+		console.log(url);
+
+		return { uploaded: url };
 	}
-}
+};
