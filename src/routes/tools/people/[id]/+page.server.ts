@@ -154,8 +154,8 @@ export const actions = {
 			return fail(400, { message: 'Must be exactly 500 by 500 pixels' });
 		}
 
-		const { url } = await put(`profile-image-${params.id}.jpg`, image, { access: 'public' });
+		await put(`profile-image-${params.id}.jpg`, image, { access: 'public' });
 
-		return { uploaded: url };
+		return;
 	}
 };
