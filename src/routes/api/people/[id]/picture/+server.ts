@@ -45,7 +45,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 		return new Response(resizedBuffer, {
 			headers: {
 				'Content-Type': 'image/png',
-				'Cache-Control': 'public, maxage=1800, s-maxage=30'
+				'Cache-Control': 'public, max-age=1800, s-maxage=30'
 			}
 		});
 	} else if (user?.image) {
@@ -56,7 +56,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 		return new Response(buffer, {
 			headers: {
 				'Content-Type': 'image/png',
-				'Cache-Control': 'public, maxage=1800, s-maxage=30'
+				'Cache-Control': 'public, max-age=1800, s-maxage=30'
 			}
 		});
 	} else {
@@ -108,7 +108,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 		return new Response(buffer, {
 			headers: {
 				'Content-Type': 'image/png',
-				'Cache-Control': 'public, maxage=1800, s-maxage=30'
+				'Cache-Control': 'public, max-age=1800, s-maxage=30'
 			}
 		});
 	}
