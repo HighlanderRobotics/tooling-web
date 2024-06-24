@@ -7,8 +7,9 @@ import prisma from '$lib/server/util/prisma';
 import * as z from 'zod';
 import { roles } from '$lib/util/person/role/roles';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
-import { put } from '@vercel/blob';
+import { del, put } from '@vercel/blob';
 import sharp from 'sharp';
+import { getPersonById } from '$lib/server/util/person/getPersonById';
 
 export const load: PageServerLoad = async ({ params, locals }) => {
 	const session = await locals.getSession();
@@ -133,6 +134,12 @@ export const actions = {
 			throw error(403, 'You do not have permission to edit people.');
 		}
 
+		const person = await getPersonById(params.id);
+
+		if (!person) {
+			throw error(404, 'Person not found');
+		}
+
 		const formData = await request.formData();
 		const image = formData.get('image') as File;
 
@@ -154,7 +161,22 @@ export const actions = {
 			return fail(400, { message: 'Must be exactly 500 by 500 pixels' });
 		}
 
-		await put(`profile-image-${params.id}.jpg`, image, { access: 'public' });
+		const { url } = await put(`profile-image-${params.id}.jpg`, image, { access: 'public' });
+
+		const oldUrl = person.profileImageUrl;
+
+		await prisma.person.update({
+			where: {
+				id: params.id
+			},
+			data: {
+				profileImageUrl: url
+			}
+		});
+
+		if (oldUrl) {
+			await del(oldUrl);
+		}
 
 		return;
 	}
