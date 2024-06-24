@@ -19,6 +19,7 @@
 			saving = false;
 
 			if (result.type === 'success') {
+				location.reload();
 				dialogOpen = false;
 			}
 
