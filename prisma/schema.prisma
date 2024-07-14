@@ -55,6 +55,7 @@ model Person {
   teamAffiliated   Boolean           @default(false)
   labCertification LabCertification?
   quizSubmissions  QuizSubmission[]
+  profileImageUrl  String?
 
   @@unique([email])
 }

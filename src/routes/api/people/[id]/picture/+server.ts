@@ -3,6 +3,7 @@ import type { RequestHandler } from './$types';
 import prisma from '$lib/server/util/prisma';
 
 import { createCanvas, GlobalFonts } from '@napi-rs/canvas';
+import sharp from 'sharp';
 
 export const GET: RequestHandler = async ({ params, url }) => {
 	const { id } = params;
@@ -32,8 +33,22 @@ export const GET: RequestHandler = async ({ params, url }) => {
 		}
 	});
 
-	// Return either the default image or an image with initials
-	if (user?.image) {
+	// Return either the set image, the default image, or an image with initials
+	if (person.profileImageUrl) {
+		// Fetch the set image
+		const response = await fetch(person.profileImageUrl);
+		const buffer = await response.arrayBuffer();
+
+		// Resize to specified size
+		const resizedBuffer = await sharp(buffer).resize(size, size).png().toBuffer();
+
+		return new Response(resizedBuffer, {
+			headers: {
+				'Content-Type': 'image/png',
+				'Cache-Control': 'public, max-age=1800, s-maxage=30'
+			}
+		});
+	} else if (user?.image) {
 		// Fetch the image but replace the size
 		const response = await fetch(user.image.replace(/=s\d+-c$/, `=s${size}-c`));
 		const buffer = await response.arrayBuffer();
@@ -41,7 +56,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 		return new Response(buffer, {
 			headers: {
 				'Content-Type': 'image/png',
-				'Cache-Control': 's-maxage=300, public'
+				'Cache-Control': 'public, max-age=1800, s-maxage=30'
 			}
 		});
 	} else {
@@ -93,7 +108,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 		return new Response(buffer, {
 			headers: {
 				'Content-Type': 'image/png',
-				'Cache-Control': 's-maxage=300, public'
+				'Cache-Control': 'public, max-age=1800, s-maxage=30'
 			}
 		});
 	}
