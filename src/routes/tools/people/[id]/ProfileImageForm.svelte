@@ -38,7 +38,8 @@
 	<h1>Upload an image</h1>
 	<p>
 		Use a photograph containing this person's face on a neutral backdrop. These are used for the
-		website and badges, so make sure they're recognizable.
+		website and badges, so make sure they're recognizable. Use a 500x500 JPEG. It might take a bit
+		for this to update everywhere.
 	</p>
 	<Dropzone
 		required
