@@ -56,6 +56,7 @@ model Person {
   labCertification     LabCertification?
   quizSubmissions      QuizSubmission[]
   attendanceLogEntries AttendanceLogEntry[]
+  badges               Badge[]
   profileImageUrl      String?
 
   @@unique([email])
@@ -93,10 +94,17 @@ enum QuizType {
 }
 
 model AttendanceLogEntry {
-  id       String @id @default(cuid())
-  personId String
-  person   Person @relation(fields: [personId], references: [id], onDelete: Cascade)
+  id        String   @id @default(cuid())
+  personId  String
+  person    Person   @relation(fields: [personId], references: [id], onDelete: Cascade)
   timestamp DateTime
+}
+
+model Badge {
+  id      String @id @default(cuid())
+  ownerId String
+  owner   Person @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  payload String @unique
 }
 
 model Permission {
