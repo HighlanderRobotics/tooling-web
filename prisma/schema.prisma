@@ -47,15 +47,16 @@ model User {
 }
 
 model Person {
-  id               String            @id @default(cuid())
-  name             String
-  email            String
-  role             Role              @default(STUDENT)
-  permissions      Permission[]
-  teamAffiliated   Boolean           @default(false)
-  labCertification LabCertification?
-  quizSubmissions  QuizSubmission[]
-  profileImageUrl  String?
+  id                   String               @id @default(cuid())
+  name                 String
+  email                String
+  role                 Role                 @default(STUDENT)
+  permissions          Permission[]
+  teamAffiliated       Boolean              @default(false)
+  labCertification     LabCertification?
+  quizSubmissions      QuizSubmission[]
+  attendanceLogEntries AttendanceLogEntry[]
+  profileImageUrl      String?
 
   @@unique([email])
 }
@@ -89,6 +90,13 @@ model QuizSubmission {
 enum QuizType {
   SAFETY_QUIZ
   LAB_LAYOUT_EMERGENCY_PREPAREDNESS
+}
+
+model AttendanceLogEntry {
+  id       String @id @default(cuid())
+  personId String
+  person   Person @relation(fields: [personId], references: [id], onDelete: Cascade)
+  timestamp DateTime
 }
 
 model Permission {
