@@ -47,17 +47,18 @@ model User {
 }
 
 model Person {
-  id                   String               @id @default(cuid())
-  name                 String
-  email                String
-  role                 Role                 @default(STUDENT)
-  permissions          Permission[]
-  teamAffiliated       Boolean              @default(false)
-  labCertification     LabCertification?
-  quizSubmissions      QuizSubmission[]
-  attendanceLogEntries AttendanceLogEntry[]
-  badges               Badge[]
-  profileImageUrl      String?
+  id                           String               @id @default(cuid())
+  name                         String
+  email                        String
+  role                         Role                 @default(STUDENT)
+  permissions                  Permission[]
+  teamAffiliated               Boolean              @default(false)
+  labCertification             LabCertification?
+  quizSubmissions              QuizSubmission[]
+  attendanceLogEntries         AttendanceLogEntry[] @relation(name: "PersonAttendanceLogEntries")
+  inputtedAttendanceLogEntries AttendanceLogEntry[] @relation(name: "PersonInputtedAttendanceLogEntries")
+  badges                       Badge[]
+  profileImageUrl              String?
 
   @@unique([email])
 }
@@ -93,11 +94,20 @@ enum QuizType {
   LAB_LAYOUT_EMERGENCY_PREPAREDNESS
 }
 
+enum AttendanceLogEntrySource {
+  KIOSK
+  DASHBOARD
+}
+
 model AttendanceLogEntry {
-  id        String   @id @default(cuid())
-  personId  String
-  person    Person   @relation(fields: [personId], references: [id], onDelete: Cascade)
-  timestamp DateTime
+  id          String                   @id @default(cuid())
+  personId    String
+  person      Person                   @relation(name: "PersonAttendanceLogEntries", fields: [personId], references: [id], onDelete: Cascade)
+  timestamp   DateTime
+  includeTime Boolean                  @default(false)
+  source      AttendanceLogEntrySource
+  enteredBy   Person?                  @relation(name: "PersonInputtedAttendanceLogEntries", fields: [enteredById], references: [id], onDelete: Cascade)
+  enteredById String?
 }
 
 model Badge {
