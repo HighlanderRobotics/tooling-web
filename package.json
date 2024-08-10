@@ -45,6 +45,7 @@
 		"pngjs": "^7.0.0",
 		"sharp": "^0.32.6",
 		"sqlite3": "^5.1.6",
+		"svelte-component-to-image": "^0.1.0",
 		"svelte-file-dropzone": "^2.0.7",
 		"zod": "^3.23.8"
 	}
