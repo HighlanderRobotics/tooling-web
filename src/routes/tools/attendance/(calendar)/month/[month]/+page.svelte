@@ -57,6 +57,12 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 16px;
+		max-width: 230px;
+		margin: 0 auto;
+	}
+
+	.nav a {
+		display: contents;
 	}
 
 	.weekdays {
