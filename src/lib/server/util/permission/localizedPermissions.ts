@@ -18,5 +18,10 @@ export const localizedPermissions: LocalizedPermissionTree = {
 			view: "View one's own lab certification",
 			edit: "Edit one's own lab certification"
 		}
+	},
+	attendance: {
+		'*': 'Full access to attendance',
+		view: 'View attendance',
+		edit: 'Edit attendance'
 	}
 };

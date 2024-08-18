@@ -44,6 +44,7 @@
 		border-radius: 7px;
 		margin-bottom: 14px;
 		overflow: hidden;
+		position: relative;
 	}
 
 	img {

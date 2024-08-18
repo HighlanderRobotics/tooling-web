@@ -34,14 +34,19 @@
 	</div>
 	<div class="days">
 		{#each days as day}
-			<div class="day" class:out-of-month={!day.inMonth} class:has-attendees={day.entryCount > 0}>
+			<a
+				href="/tools/attendance/day/{day.day}"
+				class="day"
+				class:out-of-month={!day.inMonth}
+				class:has-attendees={day.attendeeCount > 0}
+			>
 				<div class="day-number">{DateTime.fromFormat(day.day, 'yyyy-MM-dd').day}</div>
-				<div class="day-entries">
-					{`${day.entryCount === 0 ? 'No' : day.entryCount} ${
-						day.entryCount === 1 ? 'attendee' : 'attendees'
+				<div class="day-attendees">
+					{`${day.attendeeCount === 0 ? 'No' : day.attendeeCount} ${
+						day.attendeeCount === 1 ? 'attendee' : 'attendees'
 					}`}
 				</div>
-			</div>
+			</a>
 		{/each}
 	</div>
 </div>
@@ -88,6 +93,12 @@
 		flex-direction: column;
 		height: 100px;
 		border-radius: 7px;
+		text-decoration: none;
+		transition: background-color 0.1s ease-in-out;
+	}
+
+	.day:hover {
+		background-color: var(--light-gray);
 	}
 
 	.day-number {
@@ -98,14 +109,14 @@
 		border-bottom: 1px solid var(--light-gray-hover);
 	}
 
-	.day-entries {
+	.day-attendees {
 		text-align: center;
-		padding: 10px;
+		padding: 12px;
 		font-size: 14px;
 		color: var(--body);
 	}
 
-	.day.has-attendees .day-entries {
+	.day.has-attendees .day-attendees {
 		color: var(--victory-purple);
 	}
 

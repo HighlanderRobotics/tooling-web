@@ -49,7 +49,7 @@ export const load = async ({ params }) => {
 			inMonth:
 				DateTime.fromFormat(day, 'yyyy-MM-dd') >= firstDayOfMonth &&
 				DateTime.fromFormat(day, 'yyyy-MM-dd') <= lastDayOfMonth,
-			entryCount: entriesByDay[day]?.length ?? 0
+			attendeeCount: entriesByDay[day]?.length ?? 0
 		}))
 	};
 };
