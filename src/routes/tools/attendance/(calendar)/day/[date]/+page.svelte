@@ -52,7 +52,7 @@
 	>
 		Add attendee
 	</button>
-	{#each attendanceLogEntries as entry}
+	{#each attendanceLogEntries as entry (entry.id)}
 		<AttendanceEntry {entry} />
 	{/each}
 </div>
