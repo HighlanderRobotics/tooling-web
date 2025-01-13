@@ -23,5 +23,10 @@ export const localizedPermissions: LocalizedPermissionTree = {
 		'*': 'Full access to attendance',
 		view: 'View attendance',
 		edit: 'Edit attendance'
+	},
+	badges: {
+		'*': 'Full access to badges',
+		view: 'View badges',
+		edit: 'Edit badges'
 	}
 };

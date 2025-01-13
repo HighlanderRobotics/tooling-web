@@ -117,6 +117,11 @@ model Badge {
   payload String @unique
 }
 
+model KioskKey {
+  id  String @id @default(cuid())
+  key String @unique
+}
+
 model Permission {
   id       String  @id @default(cuid())
   path     String
