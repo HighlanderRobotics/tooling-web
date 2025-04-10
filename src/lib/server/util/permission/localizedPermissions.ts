@@ -19,11 +19,6 @@ export const localizedPermissions: LocalizedPermissionTree = {
 			edit: "Edit one's own lab certification"
 		}
 	},
-	attendance: {
-		'*': 'Full access to attendance',
-		view: 'View attendance',
-		edit: 'Edit attendance'
-	},
 	badges: {
 		'*': 'Full access to badges',
 		view: 'View badges',

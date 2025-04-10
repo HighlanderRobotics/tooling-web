@@ -1,7 +1,6 @@
 <script>
 	import LabCertificationThumbnail from '$lib/assets/images/tool-thumbnails/LabCertificationThumbnail.svelte';
 	import PeopleThumbnail from '$lib/assets/images/tool-thumbnails/PeopleThumbnail.svelte';
-	import AttendanceThumbnail from '$lib/assets/images/tool-thumbnails/AttendanceThumbnail.svelte';
 	import Navbar from '$lib/components/Navbar.svelte';
 </script>
 
@@ -27,16 +26,6 @@
 			<p>
 				Track whether students, mentors, and supervisors have the safety knowledge necessary to be
 				in the lab.
-			</p>
-		</div>
-	</a>
-
-	<a href="/tools/attendance" class="card">
-		<AttendanceThumbnail />
-		<div class="text">
-			<h1>Attendance</h1>
-			<p>
-				Explore trends and view or edit specific log entries tracking attendance at team events.
 			</p>
 		</div>
 	</a>

@@ -8,7 +8,7 @@
 
 	export let data: PageData;
 
-	const questions: Question<string | string[]>[] = $data.questions;
+	const questions: Question<string | string[]>[] = data.questions;
 
 	let loading = false;
 </script>
