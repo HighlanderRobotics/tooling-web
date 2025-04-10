@@ -17,6 +17,12 @@ jobs:
         id: branch-name
         uses: tj-actions/branch-names@v7
 
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4.1.0
+        with:
+          node-version: 18.x
+          
+
       - name: Install the Neon CLI
         run: npm install -g neonctl
 
