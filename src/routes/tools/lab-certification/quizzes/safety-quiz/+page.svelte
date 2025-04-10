@@ -4,9 +4,11 @@
 	import { page } from '$app/stores';
 
 	import type { PageData } from './$types';
-	import { QuestionType } from '$lib/util/lab-certification/quizzes';
+	import { Question, QuestionType } from '$lib/util/lab-certification/quizzes';
 
 	export let data: PageData;
+
+	const questions: Question<string | string[]>[] = $data.questions;
 
 	let loading = false;
 </script>
@@ -25,7 +27,7 @@
 			</div>
 		{/if}
 
-		{#each data.questions as question}
+		{#each questions as question}
 			<div class="field">
 				{#if question.type === QuestionType.SINGLE_SELECT}
 					<label class="label" for={question.id}>{question.readableName}</label>
